@@ -6,6 +6,7 @@ const test = (req, res) => {
 
 import UserSchema from "../models/user.Schema.mjs";
 import { comparePassword, hashPassword } from "../helpers/auth.mjs";
+import jwt from "jsonwebtoken";
 
 // Register End Poing
 const registerUser = async (req, res) => {
@@ -61,7 +62,15 @@ const loginUser = async (req, res) => {
     // Checking if password entered
     const match = await comparePassword(password, user.password);
     if (match) {
-      return res.json({ msg: "Password work" });
+      jwt.sign(
+        { email: user.email, id: user._id, name: user.name },
+        process.env.JWT_SECRET,
+        {},
+        (err, token) => {
+          if (err) throw err;
+          res.cookie("token", token).json(user);
+        }
+      );
     }
     if (!match) {
       res.json({

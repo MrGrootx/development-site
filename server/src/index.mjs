@@ -7,6 +7,7 @@ import cors from "cors";
 
 const app = express();
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
 
 mongoose
   .connect(process.env.MONGODB_URL)
@@ -15,6 +16,8 @@ mongoose
 
 // middleware
 app.use(express.json());
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
 
 import allRoutes from "./routes/authRoutes.mjs";
 app.use("/", allRoutes);
