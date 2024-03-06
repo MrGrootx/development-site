@@ -1,8 +1,9 @@
 import { useState } from "react";
-
+import axios from "axios";
 const Login = () => {
   const loginUser = (e) => {
     e.preventDefault();
+    axios.get('/')
   };
   const [data, setData] = useState({
     email: "",

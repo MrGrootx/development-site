@@ -1,10 +1,20 @@
 import "./index.css";
 
 import { Routes, Route } from "react-router-dom";
+import.meta.env
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+
+
+
+
+import axios from "axios";
+
+
+axios.defaults.baseURL = 'http://localhost:7000';
+axios.defaults.withCredentials = true;
 
 const App = () => {
   return (
