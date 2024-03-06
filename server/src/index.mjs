@@ -5,11 +5,18 @@ dotenv.config();
 
 import cors from "cors";
 
-import allRoutes from "./routes/authRoutes.mjs";
 const app = express();
-app.use(cors());
+import mongoose from "mongoose";
+
+mongoose
+  .connect(process.env.MONGODB_URL)
+  .then(() => console.log("DB Connected"))
+  .catch((err) => console.log(err));
+
+// middleware
 app.use(express.json());
 
+import allRoutes from "./routes/authRoutes.mjs";
 app.use("/", allRoutes);
 
 const port = 7000;
