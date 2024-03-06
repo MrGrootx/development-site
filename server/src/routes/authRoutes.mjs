@@ -13,7 +13,7 @@ import { test, registerUser } from "../controllers/autnController.mjs";
 router.use(
   cors({
     credentials: true,
-    origin: 'http://localhost:5173', // CLient
+    origin: process.env.CLIENT_MAIN_API_URL, // CLient
   })
 );
 // Routes
