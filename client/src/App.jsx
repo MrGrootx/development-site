@@ -11,19 +11,26 @@ import { Toaster } from "react-hot-toast";
 
 import axios from "axios";
 
+import { UserContextProvider } from "../context/userContext";
+import Dashboard from "./pages/Dashboard";
+
 axios.defaults.baseURL = "http://localhost:7000";
 axios.defaults.withCredentials = true;
 
 const App = () => {
   return (
     <>
-      <Navbar />
-      <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
+      <UserContextProvider>
+        <Navbar />
+        <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<h1>Page Not Found</h1>} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </UserContextProvider>
     </>
   );
 };

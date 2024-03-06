@@ -7,7 +7,7 @@ dotenv.config();
 import cors from "cors";
 
 // Routes import
-import { test, registerUser,loginUser } from "../controllers/autnController.mjs";
+import { test, registerUser,loginUser,getProfile } from "../controllers/autnController.mjs";
 
 // middleware
 router.use(
@@ -20,5 +20,6 @@ router.use(
 router.get("/", test);
 router.post("/register", registerUser);
 router.post("/login", loginUser);
+router.get("/profile", getProfile)
 
 export default router;
